@@ -8,7 +8,9 @@ export function ListManager({ list, setList, onReadOnly, readOnly }) {
   function copyToClipboard(list) {
     if (navigator.clipboard) {
       navigator.clipboard.writeText(list.join("\n"));
-      alert(t("List copied to clipboard"));
+      setTimeout(() => {
+        alert(t("List copied to clipboard"));
+      }, 100);
       return;
     }
     alert(t("Unable to copy to clipboard"));
