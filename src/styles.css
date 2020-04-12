@@ -1,0 +1,75 @@
+.App {
+  font-family: sans-serif;
+  margin: 30px;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: #ddd;
+}
+
+.caption {
+  font-size: 14px;
+  margin: 5px;
+  color: #999;
+}
+
+.form-input {
+  padding: 5px;
+  border: 2px solid #dddddd;
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+.form-input:focus {
+  outline: none;
+}
+
+.btn {
+  padding: 8px 10px;
+  appearance: none;
+  border: 0;
+  font-size: 14px;
+  border-radius: 5px;
+  background: rgb(116, 116, 116);
+  color: white;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: rgba(116, 116, 116, 0.8);
+}
+
+.btn:active {
+  background: rgba(116, 116, 116, 0.9);
+}
+
+.btn-primary {
+  background: rgb(38, 144, 243);
+}
+
+.btn-primary:hover {
+  background: rgba(38, 144, 243, 0.8);
+}
+
+.btn-primary:active {
+  background: rgba(38, 144, 243, 0.9);
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.vspacer {
+  margin: 10px 0;
+}
+
+.hspacer {
+  margin: 0 10px;
+}
