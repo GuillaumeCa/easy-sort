@@ -1,4 +1,5 @@
-import React, { useState, useMemo } from "react";
+import React, { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 function shuffle(array) {
   var currentIndex = array.length,
@@ -43,14 +44,15 @@ function genChoices(list) {
 }
 
 export function ListSorter({ list, sortEnded, onExitSorter }) {
+  const { t } = useTranslation();
   const choices = useMemo(() => shuffle(genChoices(list)), [list]);
   const [currentChoiceIdx, setChoiceIndex] = useState(0);
   const [ranks, setRank] = useState(() =>
-    list.map(el => ({ element: el, rank: 1 }))
+    list.map((el) => ({ element: el, rank: 1 }))
   );
 
   function choose(choice) {
-    const newRanks = ranks.map(r => {
+    const newRanks = ranks.map((r) => {
       if (r.element === choice) {
         r.rank++;
       }
@@ -63,12 +65,12 @@ export function ListSorter({ list, sortEnded, onExitSorter }) {
 
   function next() {
     if (currentChoiceIdx + 1 < choices.length) {
-      setChoiceIndex(idx => idx + 1);
+      setChoiceIndex((idx) => idx + 1);
     } else {
       sortEnded(
         list.sort((elA, elB) => {
-          const elARank = ranks.find(r => r.element === elA).rank;
-          const elBRank = ranks.find(r => r.element === elB).rank;
+          const elARank = ranks.find((r) => r.element === elA).rank;
+          const elBRank = ranks.find((r) => r.element === elB).rank;
 
           return elBRank - elARank;
         })
@@ -81,23 +83,23 @@ export function ListSorter({ list, sortEnded, onExitSorter }) {
   return (
     <>
       <button className="btn" onClick={onExitSorter}>
-        &larr; Retour
+        &larr; {t("Go Back")}
       </button>
       <h2>
-        {currentChoiceIdx + 1}/{choices.length} - Choisissez votre préféré
+        {currentChoiceIdx + 1}/{choices.length} - {t("Choose your favorite")}
       </h2>
       <div>
         <button
           className="btn btn-primary"
-          title="Cliquez pour sélectionner"
+          title={t("click to select")}
           onClick={() => choose(firstChoice)}
         >
           {firstChoice}
         </button>
-        <span style={{ margin: 10 }}>ou</span>
+        <span style={{ margin: 10 }}>{t("or")}</span>
         <button
           className="btn btn-primary"
-          title="Cliquez pour sélectionner"
+          title={t("click to select")}
           onClick={() => choose(secondChoice)}
         >
           {secondChoice}

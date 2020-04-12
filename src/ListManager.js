@@ -1,16 +1,18 @@
 import React, { useState } from "react";
-
-function copyToClipboard(list) {
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(list.join("\n"));
-    alert("La liste ordonnée a été copiée dans votre presse papier");
-    return;
-  }
-  alert("Impossible de copier la liste, essayez un navigateur plus récent");
-}
+import { useTranslation } from "react-i18next";
 
 export function ListManager({ list, setList, onReadOnly, readOnly }) {
+  const { t } = useTranslation();
   const [itemToAdd, setItemToAdd] = useState("");
+
+  function copyToClipboard(list) {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(list.join("\n"));
+      alert(t("List copied to clipboard"));
+      return;
+    }
+    alert(t("Unable to copy to clipboard"));
+  }
 
   function addToList(e) {
     e.preventDefault();
@@ -18,8 +20,8 @@ export function ListManager({ list, setList, onReadOnly, readOnly }) {
       return;
     }
 
-    if (list.find(item => item === itemToAdd)) {
-      alert("Cet élément est déjà présent dans la liste");
+    if (list.find((item) => item === itemToAdd)) {
+      alert(t("This element is already present in the list"));
       return;
     }
 
@@ -44,7 +46,7 @@ export function ListManager({ list, setList, onReadOnly, readOnly }) {
     <>
       {!readOnly && list.length > 0 && (
         <button className="btn vspacer" onClick={clearList}>
-          Réinitialiser
+          {t("Reset")}
         </button>
       )}
       <ol>
@@ -56,32 +58,31 @@ export function ListManager({ list, setList, onReadOnly, readOnly }) {
             <form className="vspacer" onSubmit={addToList}>
               <input
                 className="form-input"
-                placeholder="Nom"
+                placeholder={t("Name")}
                 value={itemToAdd}
                 onPaste={handleInputPaste}
-                onChange={e => setItemToAdd(e.target.value)}
+                onChange={(e) => setItemToAdd(e.target.value)}
               />
               <p className="caption">
-                Appuyez sur Entrée pour ajouter à la liste. <br />
-                Ajoutez plusieurs éléments en même temps en collant une liste
-                séparée par des retour à la ligne dans le champ texte ci-dessus.
+                {t("Hit Enter to add to list")} <br />
+                {t("Add many item")}
               </p>
             </form>
           </li>
         )}
       </ol>
       {readOnly && (
-        <button className="btn vspacer" onClick={() => copyToClipboard(list)}>
-          &darr; Copier la liste
-        </button>
-      )}
-      {readOnly && (
-        <button
-          className="btn btn-primary hspacer"
-          onClick={() => onReadOnly(false)}
-        >
-          Modifier la liste &rarr;
-        </button>
+        <>
+          <button className="btn vspacer" onClick={() => copyToClipboard(list)}>
+            &darr; {t("Copy the list")}
+          </button>
+          <button
+            className="btn btn-primary hspacer"
+            onClick={() => onReadOnly(false)}
+          >
+            {t("Edit the list")} &rarr;
+          </button>
+        </>
       )}
     </>
   );
