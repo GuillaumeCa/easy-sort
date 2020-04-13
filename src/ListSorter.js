@@ -25,11 +25,11 @@ function genChoices(list) {
   const choices = [];
   for (let firstChoice of list) {
     for (let secondChoice of list) {
-      if (firstChoice !== secondChoice) {
+      if (firstChoice.id !== secondChoice.id) {
         const hasChoiceCombination = choices.some(([fc, sc]) => {
           return (
-            (fc === firstChoice || fc === secondChoice) &&
-            (sc === firstChoice || sc === secondChoice)
+            (fc.id === firstChoice.id || fc.id === secondChoice.id) &&
+            (sc.id === firstChoice.id || sc.id === secondChoice.id)
           );
         });
 
@@ -43,7 +43,7 @@ function genChoices(list) {
   return choices;
 }
 
-export function ListSorter({ list, sortEnded, onExitSorter }) {
+export function ListSorter({ list, onSortEnded, onExitSorter }) {
   const { t } = useTranslation();
   const choices = useMemo(() => shuffle(genChoices(list)), [list]);
   const [currentChoiceIdx, setChoiceIndex] = useState(0);
@@ -53,7 +53,7 @@ export function ListSorter({ list, sortEnded, onExitSorter }) {
 
   function choose(choice) {
     const newRanks = ranks.map((r) => {
-      if (r.element === choice) {
+      if (r.element.id === choice.id) {
         r.rank++;
       }
       return r;
@@ -67,10 +67,10 @@ export function ListSorter({ list, sortEnded, onExitSorter }) {
     if (currentChoiceIdx + 1 < choices.length) {
       setChoiceIndex((idx) => idx + 1);
     } else {
-      sortEnded(
+      onSortEnded(
         list.sort((elA, elB) => {
-          const elARank = ranks.find((r) => r.element === elA).rank;
-          const elBRank = ranks.find((r) => r.element === elB).rank;
+          const elARank = ranks.find((r) => r.element.id === elA.id).rank;
+          const elBRank = ranks.find((r) => r.element.id === elB.id).rank;
 
           return elBRank - elARank;
         })
@@ -94,7 +94,7 @@ export function ListSorter({ list, sortEnded, onExitSorter }) {
           title={t("click to select")}
           onClick={() => choose(firstChoice)}
         >
-          {firstChoice}
+          {firstChoice.name}
         </button>
         <span style={{ margin: 10 }}>{t("or")}</span>
         <button
@@ -102,7 +102,7 @@ export function ListSorter({ list, sortEnded, onExitSorter }) {
           title={t("click to select")}
           onClick={() => choose(secondChoice)}
         >
-          {secondChoice}
+          {secondChoice.name}
         </button>
         <span style={{ margin: 10 }}>?</span>
       </div>

@@ -1,10 +1,17 @@
+import { faList, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import i18next from "i18next";
 import detector from "i18next-browser-languagedetector";
-import React, { useState } from "react";
+import React from "react";
 import { initReactI18next, useTranslation } from "react-i18next";
+import {
+  BrowserRouter as Router,
+  NavLink,
+  Route,
+  Switch,
+} from "react-router-dom";
 import { Footer } from "./Footer";
-import { ListManager } from "./ListManager";
-import { ListSorter } from "./ListSorter";
+import { ListCreator } from "./ListCreator";
 import "./styles.css";
 import { EN_TRANSLATION } from "./translation/en";
 import { FR_TRANSLATION } from "./translation/fr";
@@ -20,62 +27,52 @@ i18next
     fallbackLng: "en",
   });
 
-const MODE_EDIT = "edit";
-const MODE_CHOOSE = "choose";
-const MODE_RESULT = "result";
-
 export default function App() {
   const { t } = useTranslation();
-  const [mode, changeMode] = useState(MODE_EDIT);
-  const [list, setList] = useState([]);
 
   return (
-    <div className="App">
-      <div className="container">
-        <h1>🗄 EasySort</h1>
-        <p>{t("Sort your lists easily !")}</p>
-        <hr />
-        <main>
-          {mode === MODE_EDIT && (
-            <ListManager
-              readOnly={false}
-              onReadOnly={() => {}}
-              list={list}
-              setList={setList}
-            />
-          )}
-          {mode === MODE_CHOOSE && (
-            <ListSorter
-              list={list}
-              onExitSorter={() => changeMode(MODE_EDIT)}
-              sortEnded={(listSorted) => {
-                setList(listSorted);
-                changeMode(MODE_RESULT);
-              }}
-            />
-          )}
-          {mode === MODE_RESULT && (
-            <ListManager
-              readOnly={true}
-              onReadOnly={() => changeMode(MODE_EDIT)}
-              list={list}
-              setList={setList}
-            />
-          )}
+    <div className="App theme">
+      <Router>
+        <div className="container">
+          <h1>🗄 EasySort</h1>
+          <p>{t("Sort your lists easily !")}</p>
+          <div className="vspacer">
+            <div className="rounded-full nav">
+              <NavLink
+                className="link bold"
+                activeClassName="active"
+                exact
+                to="/"
+              >
+                <FontAwesomeIcon icon={faPlusCircle} />
+                <span className="lspacer">New list</span>
+              </NavLink>
+              <NavLink
+                className="link bold"
+                activeClassName="active"
+                to="/mylists"
+              >
+                <FontAwesomeIcon icon={faList} />
+                <span className="lspacer">My lists</span>
+              </NavLink>
+            </div>
+          </div>
+          <hr />
+          <main>
+            <Switch>
+              <Route exact path="/">
+                <ListCreator />
+              </Route>
+              <Route path="/mylists">
+                <div>My lists</div>
+              </Route>
+            </Switch>
+          </main>
 
-          {list.length > 0 && mode === MODE_EDIT && (
-            <button
-              className="btn btn-primary"
-              onClick={() => changeMode(MODE_CHOOSE)}
-            >
-              {t("Sort")} &rarr;
-            </button>
-          )}
-        </main>
-
-        <hr />
-        <Footer />
-      </div>
+          <hr />
+          <Footer />
+        </div>
+      </Router>
     </div>
   );
 }
