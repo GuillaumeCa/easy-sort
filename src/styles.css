@@ -48,12 +48,17 @@ input:focus {
   outline: none;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .link {
   display: inline-block;
   background: var(--gray-color);
   color: white;
   text-decoration: none;
-  padding: 5px 12px;
+  padding: 8px 10px;
 }
 
 .link.active {
@@ -78,10 +83,12 @@ input:focus {
 .form-input-ninja {
   padding: 5px 8px;
   border-radius: 3px;
-}
-.form-input-ninja:not(:disabled):not(:focus):hover {
   background: #ededed;
 }
+.form-input-ninja:not(:disabled):not(:focus):hover {
+  background: #dfdfdf;
+}
+
 .form-input-ninja:focus {
   background: #dddddd;
 }
@@ -134,7 +141,7 @@ input:focus {
 }
 
 .rounded {
-  border-radius: 3px;
+  border-radius: 5px;
 }
 
 .rounded-full {
@@ -154,4 +161,57 @@ input:focus {
   font-size: 14px;
   margin: 5px;
   color: #999;
+}
+
+.text-gray {
+  color: var(--gray-color);
+}
+
+.vcenter {
+  display: flex;
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+}
+
+.card {
+  overflow: hidden;
+  border-radius: 10px;
+  border: 2px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-footer {
+  padding: 10px;
+  background-color: var(--primary-color);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.login-google {
+  background: #e94e4e;
+  color: white;
+}
+
+.login-twitter {
+  background: #1da1f2;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .App {
+    margin: 15px;
+  }
 }

@@ -9,8 +9,8 @@ export const FR_TRANSLATION = {
     "Hit Enter to add to list": "Appuyez sur Entrée pour ajouter à la liste.",
     "Add many item":
       "Ajoutez plusieurs éléments en même temps en collant une liste séparée par des retour à la ligne dans le champ texte ci-dessus.",
-    "Copy the list": "Copier la liste",
-    "Edit the list": "Modifier la liste",
+    "Copy the list": "Copier",
+    "Edit the list": "Modifier",
     "List copied to clipboard":
       "La liste ordonnée a été copiée dans votre presse papier",
     "Unable to copy to clipboard":
@@ -20,7 +20,7 @@ export const FR_TRANSLATION = {
     or: "ou",
     "click to select": "Cliquez pour sélectionner",
     Language: "Langage",
-    "Click me to edit the title": "Cliquez ici pour éditer",
+    "title-placeholder": "Titre - Cliquez pour éditer",
     "New list": "Nouvelle liste",
     "My lists": "Mes listes",
   },

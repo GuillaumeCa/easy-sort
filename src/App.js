@@ -3,12 +3,15 @@ import detector from "i18next-browser-languagedetector";
 import React from "react";
 import { initReactI18next, useTranslation } from "react-i18next";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "./firebase";
 import { Footer } from "./Footer";
+import Header from "./Header";
 import { ListCreator } from "./ListCreator";
-import { Menu } from "./Menu";
+import { MyLists } from "./MyLists";
 import "./styles.css";
 import { EN_TRANSLATION } from "./translation/en";
 import { FR_TRANSLATION } from "./translation/fr";
+import ViewList from "./ViewList";
 
 i18next
   .use(detector)
@@ -28,17 +31,18 @@ export default function App() {
     <div className="App theme">
       <Router>
         <div className="container">
-          <h1>🗄 EasySort</h1>
-          <p>{t("Sort your lists easily !")}</p>
-          <Menu />
+          <Header />
           <hr />
           <main>
             <Switch>
               <Route exact path="/">
                 <ListCreator />
               </Route>
-              <Route path="/mylists">
-                <div>My lists</div>
+              <Route exact path="/mylists">
+                <MyLists />
+              </Route>
+              <Route path="/mylists/:id">
+                <ViewList />
               </Route>
             </Switch>
           </main>

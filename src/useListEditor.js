@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -37,30 +37,45 @@ function reducer(state, action) {
         items: state.items.filter((it) => it.id !== action.id),
       };
 
-    case "CLEAR_ITEMS":
-      return {
-        ...state,
-        items: [],
-      };
+    case "CLEAR":
+      return initState;
 
     default:
       throw new Error("unsupported action: " + action.type);
   }
 }
 
+const initState = {
+  title: "",
+  items: [],
+};
+
 export function useListEditor() {
-  const [state, dispatch] = useReducer(reducer, {
-    title: "",
-    items: [],
+  const [state, dispatch] = useReducer(reducer, initState, () => {
+    const storedList = localStorage.getItem("list");
+    if (!storedList) {
+      return initState;
+    }
+
+    try {
+      const list = JSON.parse(storedList);
+      return list;
+    } catch (err) {
+      return initState;
+    }
   });
+
+  useEffect(() => {
+    localStorage.setItem("list", JSON.stringify(state));
+  }, [state]);
 
   return {
     list: state,
-    setTitle: () => dispatch({ type: "SET_TITLE" }),
+    setTitle: (title) => dispatch({ type: "SET_TITLE", title }),
     setItems: (items) => dispatch({ type: "SET_ITEMS", items }),
     addItems: (items) => dispatch({ type: "ADD_ITEMS", items }),
     editItem: (item) => dispatch({ type: "EDIT_ITEM", item }),
     removeItem: (id) => dispatch({ type: "REMOVE_ITEM", id }),
-    clearItems: () => dispatch({ type: "CLEAR_ITEMS" }),
+    clear: () => dispatch({ type: "CLEAR" }),
   };
 }

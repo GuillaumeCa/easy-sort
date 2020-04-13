@@ -68,12 +68,10 @@ export function ListSorter({ list, onSortEnded, onExitSorter }) {
       setChoiceIndex((idx) => idx + 1);
     } else {
       onSortEnded(
-        list.sort((elA, elB) => {
-          const elARank = ranks.find((r) => r.element.id === elA.id).rank;
-          const elBRank = ranks.find((r) => r.element.id === elB.id).rank;
-
-          return elBRank - elARank;
-        })
+        list.map((item) => ({
+          ...item,
+          rank: ranks.find((r) => r.element.id === item.id).rank,
+        }))
       );
     }
   }

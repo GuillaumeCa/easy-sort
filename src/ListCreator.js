@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
+import firebase from "./firebase";
 import { ListEditor } from "./ListEditor";
 import { ListSorter } from "./ListSorter";
 import { useListEditor } from "./useListEditor";
@@ -10,16 +13,39 @@ const MODE_RESULT = "result";
 
 export function ListCreator() {
   const { t } = useTranslation();
+  const history = useHistory();
+  const [user, initializing, error] = useAuthState(firebase.auth());
+  const isLoggedin = user && !initializing && !error;
+
   const [mode, changeMode] = useState(MODE_EDIT);
   const {
     list,
     addItems,
-    clearItems,
+    clear,
     editItem,
     removeItem,
     setTitle,
     setItems,
   } = useListEditor();
+
+  function saveList(newList) {
+    if (isLoggedin) {
+      firebase
+        .firestore()
+        .collection("lists")
+        .add({
+          ...newList,
+          author: user.uid,
+        })
+        .then(
+          (newDoc) => {
+            clear();
+            history.push(`/mylists/${newDoc.id}`);
+          },
+          (err) => console.error(err)
+        );
+    }
+  }
 
   return (
     <>
@@ -31,7 +57,9 @@ export function ListCreator() {
           addItems={addItems}
           editItem={editItem}
           removeItem={removeItem}
-          clearItems={clearItems}
+          clear={clear}
+          onSave={saveList}
+          onChoose={() => changeMode(MODE_CHOOSE)}
         />
       )}
       {mode === MODE_CHOOSE && (
@@ -47,18 +75,10 @@ export function ListCreator() {
       {mode === MODE_RESULT && (
         <ListEditor
           readOnly={true}
-          onReadOnly={() => changeMode(MODE_EDIT)}
+          onSave={saveList}
+          onExit={() => changeMode(MODE_EDIT)}
           list={list}
         />
-      )}
-
-      {list.items.length > 0 && mode === MODE_EDIT && (
-        <button
-          className="btn btn-primary"
-          onClick={() => changeMode(MODE_CHOOSE)}
-        >
-          {t("Sort")} &rarr;
-        </button>
       )}
     </>
   );

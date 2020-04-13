@@ -9,8 +9,8 @@ export const EN_TRANSLATION = {
     "Hit Enter to add to list": "Hit Enter to add the item to the list.",
     "Add many item":
       "Bulk insert items by pasting a list of items separated by new lines",
-    "Copy the list": "Copy the list",
-    "Edit the list": "Edit the list",
+    "Copy the list": "Copy",
+    "Edit the list": "Edit",
     "List copied to clipboard":
       "The sorted list has been copied to your clipboard.",
     "Unable to copy to clipboard":
@@ -20,7 +20,7 @@ export const EN_TRANSLATION = {
     or: "or",
     "click to select": "click to select",
     Language: "Language",
-    "Click me to edit the title": "Click me to edit the title",
+    "title-placeholder": "Title - click to edit",
     "New list": "New list",
     "My lists": "My lists",
   },

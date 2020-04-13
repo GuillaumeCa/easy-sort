@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 
 export function Menu() {
   const { t } = useTranslation();
+
   return (
     <div className="vspacer">
       <div className="rounded-full nav">
@@ -13,7 +14,12 @@ export function Menu() {
           <FontAwesomeIcon icon={faPlusCircle} />
           <span className="lspacer">{t("New list")}</span>
         </NavLink>
-        <NavLink className="link bold" activeClassName="active" to="/mylists">
+        <NavLink
+          className="link bold"
+          activeClassName="active"
+          exact
+          to="/mylists"
+        >
           <FontAwesomeIcon icon={faList} />
           <span className="lspacer">{t("My lists")}</span>
         </NavLink>
