@@ -1,9 +1,11 @@
-import { faGoogle, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import firebase from "./firebase";
 
 export default function LoginOptions() {
+  const { t } = useTranslation();
   async function loginGoogle() {
     const googleProvider = new firebase.auth.GoogleAuthProvider();
     googleProvider.addScope("email");
@@ -11,7 +13,7 @@ export default function LoginOptions() {
       await firebase.auth().signInWithPopup(googleProvider);
     } catch (err) {
       firebase.analytics().logEvent("loginError", { error: err });
-      alert("Could not login");
+      alert(t("Could not login"));
     }
   }
 
@@ -22,18 +24,20 @@ export default function LoginOptions() {
       await firebase.auth().signInWithPopup(twitterProvider);
     } catch (err) {
       firebase.analytics().logEvent("loginError", { error: err });
-      alert("Could not login");
+      alert(t("Could not login"));
     }
   }
 
   return (
     <>
       <button className="btn bold login-google" onClick={loginGoogle}>
-        Sign in with <FontAwesomeIcon icon={faGoogle} />
+        <span className="rspacer">{t("Sign in with")}</span>
+        <FontAwesomeIcon icon={faGoogle} />
       </button>
-      <button className="btn bold login-twitter lspacer">
-        Sign in with <FontAwesomeIcon icon={faTwitter} onClick={loginTwitter} />
-      </button>
+      {/* <button className="btn bold login-twitter lspacer">
+        <span className="rspacer">{t("Sign in with")}</span>
+        <FontAwesomeIcon icon={faTwitter} onClick={loginTwitter} />
+      </button> */}
     </>
   );
 }

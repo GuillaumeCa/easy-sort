@@ -23,5 +23,17 @@ export const FR_TRANSLATION = {
     "title-placeholder": "Titre - Cliquez pour éditer",
     "New list": "Nouvelle liste",
     "My lists": "Mes listes",
+    "Sign out": "Déconnexion",
+    "Authentication error": "Erreur d'authentification",
+    "Save list failed":
+      "La sauvegarde de la liste n'a pas aboutie, veuillez réessayer.",
+    "something went wrong": "Oops quelque chose s'est mal passé.",
+    loading: "Chargement en cours...",
+    "sign in to save": "Connectez vous pour enregistrer des listes.",
+    "no list saved": "Aucune liste n'est enregistré.",
+    "create new list": "Créer une nouvelle liste",
+    "Could not login": "N'a pas pu se connecter",
+    "Sign in with": "Connexion avec",
+    "login to save list": "Pour sauvegarder la liste, connectez vous.",
   },
 };

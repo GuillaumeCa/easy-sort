@@ -46,55 +46,43 @@ function ListActions({ onSave, list, onExit, clear, readOnly, onChoose }) {
       <div>
         {!readOnly && list.items.length > 0 && (
           <>
-            <button className="btn vspacer" onClick={clear}>
+            <button className="btn vspacer rspacer" onClick={clear}>
               <FontAwesomeIcon icon={faUndo} /> {t("Reset")}
             </button>
-
-            {onSave && isSorted && !isNotLoggedIn && (
-              <button
-                className="btn btn-primary lspacer"
-                onClick={() => onSave(list)}
-              >
-                <FontAwesomeIcon icon={faCloud} /> {t("Save")}
-              </button>
-            )}
-
-            {list.items.length >= 2 && (
-              <button className="btn btn-primary lspacer" onClick={onChoose}>
-                {t("Sort")} &rarr;
-              </button>
-            )}
           </>
         )}
 
-        {readOnly && (
-          <>
-            {onSave && !isNotLoggedIn && (
-              <button
-                className="btn btn-primary vspacer"
-                onClick={() => onSave(list)}
-              >
-                <FontAwesomeIcon icon={faCloud} /> {t("Save")}
-              </button>
-            )}
-            <button
-              className="btn lspacer"
-              onClick={() => copyToClipboard(list)}
-            >
-              <FontAwesomeIcon icon={faClipboard} /> {t("Copy the list")}
-            </button>
-            {onExit && (
-              <button className="btn btn-primary lspacer" onClick={onExit}>
-                <FontAwesomeIcon icon={faPen} /> {t("Edit the list")}
-              </button>
-            )}
-          </>
+        {onSave && isSorted && !isNotLoggedIn && (
+          <button
+            className="btn btn-primary rspacer"
+            onClick={() => onSave(list)}
+          >
+            <FontAwesomeIcon icon={faCloud} /> {t("Save")}
+          </button>
+        )}
+
+        {isSorted && (
+          <button className="btn rspacer" onClick={() => copyToClipboard(list)}>
+            <FontAwesomeIcon icon={faClipboard} /> {t("Copy the list")}
+          </button>
+        )}
+
+        {!readOnly && list.items.length >= 2 && (
+          <button className="btn btn-primary" onClick={onChoose}>
+            {t("Sort")} &rarr;
+          </button>
+        )}
+
+        {readOnly && onExit && (
+          <button className="btn btn-primary" onClick={onExit}>
+            <FontAwesomeIcon icon={faPen} /> {t("Edit the list")}
+          </button>
         )}
       </div>
-      {isNotLoggedIn && (
+      {isNotLoggedIn && isSorted && (
         <div>
           <hr />
-          <p>To save this list, you have to be logged in.</p>
+          <p>{t("login to save list")}</p>
           <LoginOptions />
         </div>
       )}

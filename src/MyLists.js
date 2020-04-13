@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import ErrorMessage from "./ErrorMessage";
 import firebase from "./firebase";
@@ -31,6 +32,7 @@ function ListItem({ id, title, items, onDelete }) {
 }
 
 export function MyLists() {
+  const { t } = useTranslation();
   const [user, initializing, authError] = useAuthState(firebase.auth());
   const userId = user && !initializing && !authError ? user.uid : null;
   const query = userId
@@ -42,17 +44,17 @@ export function MyLists() {
   });
 
   if (authError || error) {
-    return <ErrorMessage>Oops something went wrong...</ErrorMessage>;
+    return <ErrorMessage>{t("something went wrong")}</ErrorMessage>;
   }
 
   if (loading || initializing) {
-    return <p className="caption">Loading...</p>;
+    return <p className="caption">{t("loading")}</p>;
   }
 
   if (!initializing && !user) {
     return (
       <div>
-        <p>Sign in to save lists</p>
+        <p>{t("sign in to save")}</p>
         <LoginOptions />
       </div>
     );
@@ -64,9 +66,9 @@ export function MyLists() {
   if (value.docs.length === 0) {
     return (
       <div>
-        <p>No list saved</p>
+        <p>{t("no list saved")}</p>
         <a href="/" className="link active rounded">
-          <FontAwesomeIcon icon={faPlusCircle} /> Create new list
+          <FontAwesomeIcon icon={faPlusCircle} /> {t("create new list")}
         </a>
       </div>
     );

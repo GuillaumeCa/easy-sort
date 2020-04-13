@@ -43,10 +43,10 @@ export default function Header() {
               />
             </div>
           )}
-          {error && <ErrorMessage>Erreur d'authentification</ErrorMessage>}
+          {error && <ErrorMessage>{t("Authentication error")}</ErrorMessage>}
           {user && (
             <button className="btn vspacer" onClick={logout}>
-              Sign out
+              {t("Sign out")}
             </button>
           )}
         </div>
