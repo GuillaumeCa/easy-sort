@@ -6,7 +6,7 @@ export default function ErrorMessage({ children }) {
   return (
     <p>
       <FontAwesomeIcon icon={faExclamationTriangle} />
-      <span>{children}</span>
+      <span className="lspacer">{children}</span>
     </p>
   );
 }

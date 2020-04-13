@@ -32,11 +32,8 @@ export function ListCreator() {
     if (isLoggedin) {
       firebase
         .firestore()
-        .collection("lists")
-        .add({
-          ...newList,
-          author: user.uid,
-        })
+        .collection(`users/${user.uid}/lists`)
+        .add(newList)
         .then(
           (newDoc) => {
             clear();

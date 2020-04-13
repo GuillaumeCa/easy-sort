@@ -36,7 +36,7 @@ export function MyLists() {
   const [user, initializing, authError] = useAuthState(firebase.auth());
   const userId = user && !initializing && !authError ? user.uid : null;
   const query = userId
-    ? firebase.firestore().collection("lists").where("author", "==", userId)
+    ? firebase.firestore().collection(`users/${userId}/lists`)
     : null;
 
   const [value, loading, error] = useCollection(query, {
@@ -44,6 +44,7 @@ export function MyLists() {
   });
 
   if (authError || error) {
+    console.log(error);
     return <ErrorMessage>{t("something went wrong")}</ErrorMessage>;
   }
 
