@@ -95,7 +95,7 @@ export function ListEditor({
         <input
           disabled={readOnly}
           className="form-input-ninja bold"
-          placeholder="Click me to edit the title"
+          placeholder={t("Click me to edit the title")}
           value={list.title}
           onChange={(e) => setTitle(e.target.value)}
         />

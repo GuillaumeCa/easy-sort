@@ -20,5 +20,8 @@ export const EN_TRANSLATION = {
     or: "or",
     "click to select": "click to select",
     Language: "Language",
+    "Click me to edit the title": "Click me to edit the title",
+    "New list": "New list",
+    "My lists": "My lists",
   },
 };

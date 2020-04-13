@@ -20,5 +20,8 @@ export const FR_TRANSLATION = {
     or: "ou",
     "click to select": "Cliquez pour sélectionner",
     Language: "Langage",
+    "Click me to edit the title": "Cliquez ici pour éditer",
+    "New list": "Nouvelle liste",
+    "My lists": "Mes listes",
   },
 };
