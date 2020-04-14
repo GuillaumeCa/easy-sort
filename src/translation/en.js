@@ -33,6 +33,7 @@ export const EN_TRANSLATION = {
     "create new list": "Create new list",
     "Could not login": "Could not login",
     "Sign in with": "Sign in with",
+    Save: "Save",
     "login to save list": "To save this list, you have to be logged in.",
   },
 };

@@ -34,6 +34,7 @@ export const FR_TRANSLATION = {
     "create new list": "Créer une nouvelle liste",
     "Could not login": "N'a pas pu se connecter",
     "Sign in with": "Connexion avec",
+    Save: "Sauvegarder",
     "login to save list": "Pour sauvegarder la liste, connectez vous.",
   },
 };
