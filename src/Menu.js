@@ -3,9 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
+import { useUser } from "./AuthProvider";
 
 export function Menu() {
   const { t } = useTranslation();
+  const { user, initializing, error } = useUser();
 
   return (
     <div className="vspacer">

@@ -7,10 +7,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useTranslation } from "react-i18next";
 import { v4 as uuidV4 } from "uuid";
-import firebase from "./firebase";
+import { useUser } from "./AuthProvider";
 import LoginOptions from "./LoginOptions";
 
 function useDerivedState(baseState, deps = [baseState]) {
@@ -24,7 +23,7 @@ function useDerivedState(baseState, deps = [baseState]) {
 
 function ListActions({ onSave, list, onExit, clear, readOnly, onChoose }) {
   const { t } = useTranslation();
-  const [user, initializing, error] = useAuthState(firebase.auth());
+  const { user, initializing, error } = useUser();
 
   const isNotLoggedIn = !user && !initializing && !error;
   const isSorted = list.items.filter((item) => item.rank > 0).length > 0;

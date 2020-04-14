@@ -9,6 +9,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.13.0",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@fortawesome/react-fontawesome": "^0.1.9",
+    "@reach/alert-dialog": "^0.10.0",
     "firebase": "^7.14.0",
     "i18next": "^19.4.1",
     "i18next-browser-languagedetector": "^4.0.2",
@@ -19,9 +20,6 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.0.1",
     "uuid": "^7.0.3"
-  },
-  "devDependencies": {
-    "typescript": "3.3.3"
   },
   "scripts": {
     "start": "react-scripts start",

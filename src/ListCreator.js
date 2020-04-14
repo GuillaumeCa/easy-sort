@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
+import { useUser } from "./AuthProvider";
 import firebase from "./firebase";
 import { ListEditor } from "./ListEditor";
 import { ListSorter } from "./ListSorter";
@@ -14,7 +14,7 @@ const MODE_RESULT = "result";
 export function ListCreator() {
   const { t } = useTranslation();
   const history = useHistory();
-  const [user, initializing, error] = useAuthState(firebase.auth());
+  const { user, initializing, error } = useUser();
   const isLoggedin = user && !initializing && !error;
 
   const [mode, changeMode] = useState(MODE_EDIT);

@@ -1,13 +1,13 @@
 import { faPlusCircle, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { useUser } from "./AuthProvider";
 import ErrorMessage from "./ErrorMessage";
-import firebase from "./firebase";
 import LoginOptions from "./LoginOptions";
+import { queryLists } from "./services/lists";
 
 function ListItem({ id, title, items, onDelete }) {
   return (
@@ -33,11 +33,9 @@ function ListItem({ id, title, items, onDelete }) {
 
 export function MyLists() {
   const { t } = useTranslation();
-  const [user, initializing, authError] = useAuthState(firebase.auth());
+  const { user, initializing, error: authError } = useUser();
   const userId = user && !initializing && !authError ? user.uid : null;
-  const query = userId
-    ? firebase.firestore().collection(`users/${userId}/lists`)
-    : null;
+  const query = userId ? queryLists(userId) : null;
 
   const [value, loading, error] = useCollection(query, {
     snapshotListenOptions: { includeMetadataChanges: true },

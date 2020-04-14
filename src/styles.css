@@ -16,8 +16,10 @@
 }
 
 .theme {
+  font-family: "Inter", sans-serif;
   --primary-color: rgb(38, 144, 243);
   --gray-color: rgb(162, 162, 162);
+  --warn-color: rgb(230, 73, 73);
 }
 
 .container {
@@ -123,6 +125,10 @@ a {
 
 .btn-primary {
   background: var(--primary-color);
+}
+
+.btn-warn {
+  background: var(--warn-color);
 }
 
 .vspacer {

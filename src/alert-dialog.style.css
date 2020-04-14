@@ -1,0 +1,20 @@
+[data-reach-dialog-overlay] {
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+}
+
+[data-reach-dialog-content] {
+  max-width: 400px;
+  margin: 30vh auto;
+  background: #fff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  outline: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
