@@ -5,7 +5,7 @@ import firebase from "./firebase";
 const AuthContext = createContext(null);
 
 /**
- * @returns {{ user: firebase.User, initializing: boolean, error: firebase.auth.Error}}
+ * @returns {{ user: firebase.User, initializing: boolean, error: firebase.auth.Error, auth: firebase.auth.Auth}}
  */
 export function useUser() {
   return useContext(AuthContext);
@@ -19,6 +19,7 @@ export default function AuthProvider({ children }) {
       user,
       initializing,
       error,
+      auth: firebase.auth(),
     }),
     [user, initializing, error]
   );

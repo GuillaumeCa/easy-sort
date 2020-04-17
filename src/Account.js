@@ -9,7 +9,7 @@ import React, { useRef, useState } from "react";
 import { useUser } from "./AuthProvider";
 
 export default function Account() {
-  const { user, initializing, error } = useUser();
+  const { user, auth, initializing, error } = useUser();
   const cancelRef = useRef();
   const [confirmDelete, setConfirmDelete] = useState(false);
 
@@ -46,7 +46,12 @@ export default function Account() {
               className="btn btn-warn"
               onClick={async () => {
                 setConfirmDelete(false);
-                await user.delete();
+                user.delete().catch((err) => {
+                  if (err.code === "auth/requires-recent-login") {
+                    window.alert("Please sign-in and try again.");
+                    auth.signOut();
+                  }
+                });
               }}
             >
               Yes, delete

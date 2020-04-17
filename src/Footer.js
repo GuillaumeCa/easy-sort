@@ -10,8 +10,9 @@ export function Footer() {
   }, [language, i18n]);
 
   return (
-    <footer>
-      <span>{t("Language")} </span>
+    <footer className="footer">
+      {/* <span>{t("Language")} </span> */}
+      <span>Copyright © 2020 EasySort </span>
       <select value={language} onChange={(e) => changeLanguage(e.target.value)}>
         <option value="en">English</option>
         <option value="fr">Français</option>

@@ -35,7 +35,7 @@ export default function App() {
         <AuthProvider>
           <div className="container">
             <Header />
-            <main>
+            <main style={{ marginTop: 30 }}>
               <Switch>
                 <Route exact path="/">
                   <ListCreator />
@@ -52,7 +52,6 @@ export default function App() {
               </Switch>
             </main>
 
-            <hr />
             <Footer />
           </div>
         </AuthProvider>

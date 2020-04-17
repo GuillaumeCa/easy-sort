@@ -74,16 +74,18 @@ export function MyLists() {
   }
 
   return (
-    <div className="grid">
-      {value.docs.map((doc) => (
-        <ListItem
-          key={doc.id}
-          id={doc.id}
-          title={doc.get("title")}
-          items={doc.get("items")}
-          onDelete={() => doc.ref.delete()}
-        />
-      ))}
+    <div>
+      <div className="grid">
+        {value.docs.map((doc) => (
+          <ListItem
+            key={doc.id}
+            id={doc.id}
+            title={doc.get("title")}
+            items={doc.get("items")}
+            onDelete={() => doc.ref.delete()}
+          />
+        ))}
+      </div>
     </div>
   );
 }
