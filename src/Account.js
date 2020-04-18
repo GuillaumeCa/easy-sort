@@ -6,12 +6,23 @@ import {
   AlertDialogLabel,
 } from "@reach/alert-dialog";
 import React, { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useUser } from "./AuthProvider";
+import ErrorMessage from "./ErrorMessage";
 
 export default function Account() {
+  const { t } = useTranslation();
   const { user, auth, initializing, error } = useUser();
   const cancelRef = useRef();
   const [confirmDelete, setConfirmDelete] = useState(false);
+
+  if (initializing) {
+    return <p className="caption">{t("loading")}</p>;
+  }
+
+  if (error) {
+    return <ErrorMessage>{t("something went wrong")}</ErrorMessage>;
+  }
 
   if (!user) {
     return null;
@@ -19,27 +30,36 @@ export default function Account() {
 
   return (
     <div>
-      <h2>Hello, {user.displayName}</h2>
+      <h2>
+        {t("account:Hello")}, {user.displayName}
+      </h2>
+      <p>
+        {t("account:Logged in with")} {user.providerData[0].providerId}
+      </p>
 
       <button className="btn">
         <FontAwesomeIcon icon={faSignOutAlt} />
-        <span className="lspacer">Sign out</span>
+        <span className="lspacer">{t("Sign out")}</span>
       </button>
       <button
         className="btn btn-warn lspacer"
         onClick={() => setConfirmDelete(true)}
       >
         <FontAwesomeIcon icon={faTrash} />
-        <span className="lspacer">Delete Account</span>
+        <span className="lspacer">{t("account:Delete Account")}</span>
       </button>
 
       {confirmDelete && (
         <AlertDialog className="theme" leastDestructiveRef={cancelRef}>
           <AlertDialogLabel>
-            <h2>Are you sure you want to delete your account ?</h2>
+            <h2>
+              {t("account:Are you sure you want to delete your account ?")}
+            </h2>
           </AlertDialogLabel>
           <AlertDialogDescription>
-            This action cannot be reversed and all your data will be deleted.
+            {t(
+              "account:This action cannot be reversed and all your data will be deleted."
+            )}
           </AlertDialogDescription>
           <div className="alert-buttons vspacer">
             <button
@@ -48,20 +68,20 @@ export default function Account() {
                 setConfirmDelete(false);
                 user.delete().catch((err) => {
                   if (err.code === "auth/requires-recent-login") {
-                    window.alert("Please sign-in and try again.");
+                    window.alert(t("account:Please sign-in and try again."));
                     auth.signOut();
                   }
                 });
               }}
             >
-              Yes, delete
+              {t("account:Yes, delete")}
             </button>{" "}
             <button
               ref={cancelRef}
               className="btn lspacer"
               onClick={() => setConfirmDelete(false)}
             >
-              Cancel
+              {t("Cancel")}
             </button>
           </div>
         </AlertDialog>

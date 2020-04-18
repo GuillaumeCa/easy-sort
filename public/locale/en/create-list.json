@@ -1,0 +1,17 @@
+{
+  "Save list failed": "Could not save list. Try again.",
+  "List copied to clipboard": "The sorted list has been copied to your clipboard.",
+  "Unable to copy to clipboard": "Unable to copy the list to the clipboard, try with a newer browser",
+  "Copy the list": "Copy",
+  "Edit the list": "Edit",
+  "login to save list": "To save this list, you have to be logged in.",
+  "This element is already present in the list": "This element is already present in the list",
+  "title-placeholder": "Title - click to edit",
+  "Name": "Name",
+  "Hit Enter to add to list": "Hit Enter to add the item to the list.",
+  "Add many item": "Bulk insert items by pasting a list of items separated by new lines",
+  "Go Back": "Go Back",
+  "Choose your favorite": "Choose your favorite",
+  "click to select": "click to select",
+  "or": "or"
+}

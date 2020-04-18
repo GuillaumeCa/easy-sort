@@ -39,7 +39,7 @@ export function ListCreator() {
             clear();
             history.push(`/mylists/${newDoc.id}`);
           },
-          (err) => alert(t("Save list failed"))
+          (err) => alert(t("create-list:Save list failed"))
         );
     }
   }

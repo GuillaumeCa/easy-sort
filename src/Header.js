@@ -1,16 +1,24 @@
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faSpinner, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import {
+  AlertDialog,
+  AlertDialogDescription,
+  AlertDialogLabel,
+} from "@reach/alert-dialog";
+import React, { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useUser } from "./AuthProvider";
 import ErrorMessage from "./ErrorMessage";
 import firebase from "./firebase";
+import LoginOptions from "./LoginOptions";
 import { Menu } from "./Menu";
 
 export default function Header() {
   const { t } = useTranslation();
-  const { user, initialising, error } = useUser();
+  const { user, initializing, error } = useUser();
+  const cancelRef = useRef();
+  const [showLoginOpts, setShowLoginOpts] = useState(false);
 
   function logout() {
     firebase.auth().signOut();
@@ -30,7 +38,7 @@ export default function Header() {
           <p>{t("Sort your lists easily !")}</p>
         </div>
         <div style={{ textAlign: "right" }}>
-          {initialising && (
+          {initializing && (
             <FontAwesomeIcon className="text-gray" spin icon={faSpinner} />
           )}
           {user && (
@@ -52,8 +60,41 @@ export default function Header() {
               {t("Sign out")}
             </button>
           )}
+          {!user && !initializing && (
+            <button
+              className="btn btn-primary vspacer"
+              onClick={() => setShowLoginOpts(true)}
+            >
+              <FontAwesomeIcon icon={faUser} />
+              <span className="lspacer">{t("Sign in")}</span>
+            </button>
+          )}
         </div>
       </div>
+
+      {showLoginOpts && (
+        <AlertDialog className="theme" leastDestructiveRef={cancelRef}>
+          <AlertDialogLabel>
+            <h2>{t("Login")}</h2>
+          </AlertDialogLabel>
+          <AlertDialogDescription>
+            <div>
+              <p>{t("Choose a login provider.")}</p>
+              <LoginOptions onLogin={() => setShowLoginOpts(false)} />
+            </div>
+          </AlertDialogDescription>
+          <div className="alert-buttons vspacer">
+            <button
+              ref={cancelRef}
+              className="btn"
+              onClick={() => setShowLoginOpts(false)}
+            >
+              {t("Cancel")}
+            </button>
+          </div>
+        </AlertDialog>
+      )}
+
       <Menu />
     </>
   );

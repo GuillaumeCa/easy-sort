@@ -1,0 +1,17 @@
+{
+  "Save list failed": "La sauvegarde de la liste n'a pas aboutie, veuillez réessayer.",
+  "List copied to clipboard": "La liste ordonnée a été copiée dans votre presse papier",
+  "Unable to copy to clipboard": "Impossible de copier la liste, essayez un navigateur plus récent.",
+  "Copy the list": "Copier",
+  "Edit the list": "Modifier",
+  "login to save list": "Pour sauvegarder la liste, connectez vous.",
+  "This element is already present in the list": "Cet élément est déjà présent dans la liste",
+  "title-placeholder": "Titre - Cliquez pour éditer",
+  "Name": "Nom",
+  "Hit Enter to add to list": "Appuyez sur Entrée pour ajouter à la liste.",
+  "Add many item": "Ajoutez plusieurs éléments en même temps en collant une liste séparée par des retour à la ligne dans le champ texte ci-dessus.",
+  "Go Back": "Retour",
+  "Choose your favorite": "Choisissez votre préféré",
+  "click to select": "Cliquez pour sélectionner",
+  "or": "ou"
+}

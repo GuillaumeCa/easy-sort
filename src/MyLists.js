@@ -42,7 +42,6 @@ export function MyLists() {
   });
 
   if (authError || error) {
-    console.log(error);
     return <ErrorMessage>{t("something went wrong")}</ErrorMessage>;
   }
 
@@ -53,7 +52,7 @@ export function MyLists() {
   if (!initializing && !user) {
     return (
       <div>
-        <p>{t("sign in to save")}</p>
+        <p>{t("view-list:sign in to save")}</p>
         <LoginOptions />
       </div>
     );
@@ -65,9 +64,10 @@ export function MyLists() {
   if (value.docs.length === 0) {
     return (
       <div>
-        <p>{t("no list saved")}</p>
+        <p>{t("view-list:no list saved")}</p>
         <a href="/" className="link active rounded">
-          <FontAwesomeIcon icon={faPlusCircle} /> {t("create new list")}
+          <FontAwesomeIcon icon={faPlusCircle} />{" "}
+          {t("view-list:create new list")}
         </a>
       </div>
     );

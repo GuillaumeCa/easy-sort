@@ -81,23 +81,24 @@ export function ListSorter({ list, onSortEnded, onExitSorter }) {
   return (
     <>
       <button className="btn" onClick={onExitSorter}>
-        &larr; {t("Go Back")}
+        &larr; {t("create-list:Go Back")}
       </button>
       <h2>
-        {currentChoiceIdx + 1}/{choices.length} - {t("Choose your favorite")}
+        {currentChoiceIdx + 1}/{choices.length} -{" "}
+        {t("create-list:Choose your favorite")}
       </h2>
       <div>
         <button
           className="btn btn-primary"
-          title={t("click to select")}
+          title={t("create-list:click to select")}
           onClick={() => choose(firstChoice)}
         >
           {firstChoice.name}
         </button>
-        <span style={{ margin: 10 }}>{t("or")}</span>
+        <span style={{ margin: 10 }}>{t("create-list:or")}</span>
         <button
           className="btn btn-primary"
-          title={t("click to select")}
+          title={t("create-list:click to select")}
           onClick={() => choose(secondChoice)}
         >
           {secondChoice.name}

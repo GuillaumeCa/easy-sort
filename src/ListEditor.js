@@ -33,11 +33,11 @@ function ListActions({ onSave, list, onExit, clear, readOnly, onChoose }) {
       const text = [list.title, ...list.items].join("\n");
       navigator.clipboard.writeText(text);
       setTimeout(() => {
-        alert(t("List copied to clipboard"));
+        alert(t("create-list:List copied to clipboard"));
       }, 100);
       return;
     }
-    alert(t("Unable to copy to clipboard"));
+    alert(t("create-list:Unable to copy to clipboard"));
   }
 
   return (
@@ -62,7 +62,8 @@ function ListActions({ onSave, list, onExit, clear, readOnly, onChoose }) {
 
         {isSorted && (
           <button className="btn rspacer" onClick={() => copyToClipboard(list)}>
-            <FontAwesomeIcon icon={faClipboard} /> {t("Copy the list")}
+            <FontAwesomeIcon icon={faClipboard} />{" "}
+            {t("create-list:Copy the list")}
           </button>
         )}
 
@@ -74,14 +75,14 @@ function ListActions({ onSave, list, onExit, clear, readOnly, onChoose }) {
 
         {readOnly && onExit && (
           <button className="btn btn-primary" onClick={onExit}>
-            <FontAwesomeIcon icon={faPen} /> {t("Edit the list")}
+            <FontAwesomeIcon icon={faPen} /> {t("create-list:Edit the list")}
           </button>
         )}
       </div>
       {isNotLoggedIn && isSorted && (
         <div>
           <hr />
-          <p>{t("login to save list")}</p>
+          <p>{t("create-list:login to save list")}</p>
           <LoginOptions />
         </div>
       )}
@@ -148,7 +149,7 @@ export function ListEditor({
     }
 
     if (list.items.find((item) => item.name === itemToAdd)) {
-      alert(t("This element is already present in the list"));
+      alert(t("create-list:This element is already present in the list"));
       return;
     }
 
@@ -180,7 +181,7 @@ export function ListEditor({
           <input
             disabled={readOnly}
             className="form-input-ninja bold"
-            placeholder={t("title-placeholder")}
+            placeholder={t("create-list:title-placeholder")}
             value={list.title}
             onChange={(e) => setTitle(e.target.value)}
           />
@@ -204,14 +205,14 @@ export function ListEditor({
             <form className="vspacer" onSubmit={addToList}>
               <input
                 className="form-input-ninja"
-                placeholder={t("Name")}
+                placeholder={t("create-list:Name")}
                 value={itemToAdd}
                 onPaste={handleInputPaste}
                 onChange={(e) => setItemToAdd(e.target.value)}
               />
               <p className="caption">
-                {t("Hit Enter to add to list")} <br />
-                {t("Add many item")}
+                {t("create-list:Hit Enter to add to list")} <br />
+                {t("create-list:Add many item")}
               </p>
             </form>
           </li>

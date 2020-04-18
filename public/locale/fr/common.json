@@ -1,0 +1,17 @@
+{
+  "loading": "Chargement en cours...",
+  "something went wrong": "Oups quelque chose s'est mal passé.",
+  "Sign out": "Déconnexion",
+  "Cancel": "Annuler",
+  "Language": "Langage",
+  "Sort your lists easily !": "Ordonnez vos listes facilement !",
+  "Authentication error": "Erreur d'authentification",
+  "Sign in": "Connexion",
+  "Login": "Connexion",
+  "Choose a login provider.": "Choisissez une option de connexion",
+  "Reset": "Réinitialiser",
+  "Save": "Enregistrer",
+  "Sort": "Trier",
+  "Could not login": "N'a pas pu se connecter",
+  "Sign in with": "Connexion avec"
+}

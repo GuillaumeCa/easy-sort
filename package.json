@@ -13,6 +13,8 @@
     "firebase": "^7.14.0",
     "i18next": "^19.4.1",
     "i18next-browser-languagedetector": "^4.0.2",
+    "i18next-fetch-backend": "^2.2.0",
+    "i18next-scanner": "^2.11.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-firebase-hooks": "^2.1.1",
@@ -27,7 +29,8 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "version": "",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "gen:trans": "i18next-scanner --config i18next-scanner.config.js"
   },
   "browserslist": [
     ">0.2%",

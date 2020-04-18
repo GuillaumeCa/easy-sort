@@ -1,0 +1,9 @@
+{
+  "Hello": "Bonjour",
+  "Logged in with": "Connecté avec",
+  "Delete Account": "Supprimer le compte",
+  "Are you sure you want to delete your account ?": "Etes vous sur de vouloir supprimer votre compte ?",
+  "This action cannot be reversed and all your data will be deleted.": "Cette action ne peut pas être annulé et toutes vos données seront supprimées.",
+  "Please sign-in and try again.": "Connectez vous de nouveau et réessayer",
+  "Yes, delete": "Oui, supprimer"
+}

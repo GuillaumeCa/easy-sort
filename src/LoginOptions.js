@@ -4,9 +4,11 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import firebase from "./firebase";
 
-export default function LoginOptions() {
+export default function LoginOptions({ onLogin }) {
   const { t } = useTranslation();
   async function loginGoogle() {
+    onLogin();
+
     const googleProvider = new firebase.auth.GoogleAuthProvider();
     googleProvider.addScope("email");
     try {
@@ -18,6 +20,8 @@ export default function LoginOptions() {
   }
 
   async function loginTwitter() {
+    onLogin();
+
     const twitterProvider = new firebase.auth.TwitterAuthProvider();
     twitterProvider.addScope("email");
     try {

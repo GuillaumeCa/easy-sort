@@ -3,18 +3,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-import { useUser } from "./AuthProvider";
 
 export function Menu() {
   const { t } = useTranslation();
-  const { user, initializing, error } = useUser();
 
   return (
     <div className="vspacer">
       <div className="rounded-full nav">
         <NavLink className="link bold" activeClassName="active" exact to="/">
           <FontAwesomeIcon icon={faPlusCircle} />
-          <span className="lspacer">{t("New list")}</span>
+          <span className="lspacer">{t("menu:New list")}</span>
         </NavLink>
         <NavLink
           className="link bold"
@@ -23,7 +21,7 @@ export function Menu() {
           to="/mylists"
         >
           <FontAwesomeIcon icon={faList} />
-          <span className="lspacer">{t("My lists")}</span>
+          <span className="lspacer">{t("menu:My lists")}</span>
         </NavLink>
       </div>
     </div>
