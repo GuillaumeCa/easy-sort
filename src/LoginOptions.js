@@ -4,7 +4,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import firebase from "./firebase";
 
-export default function LoginOptions({ onLogin }) {
+export default function LoginOptions({ onLogin = () => {} }) {
   const { t } = useTranslation();
   async function loginGoogle() {
     onLogin();
