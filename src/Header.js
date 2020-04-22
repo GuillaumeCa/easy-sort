@@ -79,7 +79,7 @@ export default function Header() {
           </AlertDialogLabel>
           <AlertDialogDescription>
             <div>
-              <p>{t("Choose a login provider.")}</p>
+              <p>{t("choose-provider")}</p>
               <LoginOptions onLogin={() => setShowLoginOpts(false)} />
             </div>
           </AlertDialogDescription>

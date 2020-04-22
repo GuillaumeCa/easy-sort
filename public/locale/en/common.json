@@ -8,7 +8,7 @@
   "Authentication error": "Authentication error",
   "Sign in": "Sign in",
   "Login": "Login",
-  "Choose a login provider.": "Choose a login provider.",
+  "choose-provider": "Choose a login provider.",
   "Reset": "Reset",
   "Save": "Save",
   "Sort": "Sort",

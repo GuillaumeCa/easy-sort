@@ -8,7 +8,7 @@
   "Authentication error": "Erreur d'authentification",
   "Sign in": "Connexion",
   "Login": "Connexion",
-  "Choose a login provider.": "Choisissez une option de connexion",
+  "choose-provider": "Choisissez une option de connexion.",
   "Reset": "Réinitialiser",
   "Save": "Enregistrer",
   "Sort": "Trier",
