@@ -1,18 +1,3 @@
 # EasySort
 
-## Todo
-
-- uuid to items
-- can edit/delete items
-- add title to lists
-- login with google/twitter
-- add ability to save list if logged in
-
-App flow
-
-- Create List
-  - set title
-  - set items
-  - edit/delete
-  - order
-  - saved
+This app helps sorting lists by comparing each items to sort. Auth is handled by firebase and lists can be stored on firebase if the user is logged in.
