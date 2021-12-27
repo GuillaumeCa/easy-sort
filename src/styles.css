@@ -216,6 +216,16 @@ a {
   background: #1da1f2;
 }
 
+.select {
+  border: none;
+  border-radius: 999px;
+  padding: 5px 10px;
+  border-right: transparent solid 5px;
+  font-weight: bold;
+  background-color: #1da1f2;
+  color: white;
+}
+
 @media (max-width: 600px) {
   .grid {
     grid-template-columns: 1fr;

@@ -37,7 +37,7 @@ export default function Account() {
         {t("account:Logged in with")} {user.providerData[0].providerId}
       </p>
 
-      <button className="btn">
+      <button className="btn" onClick={() => auth.signOut()}>
         <FontAwesomeIcon icon={faSignOutAlt} />
         <span className="lspacer">{t("Sign out")}</span>
       </button>

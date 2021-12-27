@@ -48,7 +48,7 @@ export default function Header() {
                 <img
                   className="rounded-full lspacer"
                   style={{ width: 30 }}
-                  alt="profile picture"
+                  alt="profile"
                   src={user.photoURL}
                 />
               </div>

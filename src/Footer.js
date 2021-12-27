@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export function Footer() {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const [language, changeLanguage] = useState(i18n.language);
 
   useEffect(() => {
@@ -11,9 +11,12 @@ export function Footer() {
 
   return (
     <footer className="footer">
-      {/* <span>{t("Language")} </span> */}
       <span>Copyright © 2020 EasySort </span>
-      <select value={language} onChange={(e) => changeLanguage(e.target.value)}>
+      <select
+        className="select"
+        value={language}
+        onChange={(e) => changeLanguage(e.target.value)}
+      >
         <option value="en">English</option>
         <option value="fr">Français</option>
       </select>
