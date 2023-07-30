@@ -1,0 +1,6 @@
+#/bin/bash
+
+for file in src/*.js
+ do
+  mv ${file/.js/.jsx}
+ done
