@@ -23,7 +23,7 @@
     "uuid": "^7.0.3"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 3000 --open",
     "build": "vite build",
     "preview": "vite preview",
     "postversion": "git push && git push --tags",

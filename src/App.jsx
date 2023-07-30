@@ -3,17 +3,17 @@ import detector from "i18next-browser-languagedetector";
 import Fetch from "i18next-fetch-backend";
 import React, { Suspense } from "react";
 import { initReactI18next } from "react-i18next";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import Account from "./Account";
-import "./alert-dialog.style.css";
 import AuthProvider from "./AuthProvider";
-import "./firebase";
 import { Footer } from "./Footer";
 import Header from "./Header";
 import { ListCreator } from "./ListCreator";
 import { MyLists } from "./MyLists";
-import "./styles.css";
 import ViewList from "./ViewList";
+import "./alert-dialog.style.css";
+import "./firebase";
+import "./styles.css";
 
 i18next
   .use(detector)
@@ -22,7 +22,7 @@ i18next
   .init({
     ns: ["common", "account", "create-list", "view-list", "menu"],
     backend: {
-      loadPath: process.env.PUBLIC_URL + "/locale/{{lng}}/{{ns}}.json",
+      loadPath: "/locale/{{lng}}/{{ns}}.json",
     },
     defaultNS: "common",
     fallbackLng: "en",
